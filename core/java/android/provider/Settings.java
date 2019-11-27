@@ -5672,6 +5672,11 @@ public final class Settings {
         };
 
         /**
+         * @hide
+         */
+        public static final String USE_OLD_MOBILETYPE = "use_old_mobiletype";
+
+        /**
          * Use doubletap as doze pulse triggers
          * @hide
          */
