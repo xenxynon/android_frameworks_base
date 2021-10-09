@@ -628,6 +628,8 @@ public class PhoneWindowManager implements WindowManagerPolicy {
 
     private AssistUtils mAssistUtils;
 
+    private AssistUtils mAssistUtils;
+
     // Maps global key codes to the components that will handle them.
     private GlobalKeyManager mGlobalKeyManager;
 
