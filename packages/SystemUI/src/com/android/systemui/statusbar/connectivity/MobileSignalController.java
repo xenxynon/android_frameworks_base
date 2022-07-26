@@ -100,7 +100,7 @@ public class MobileSignalController extends SignalController<MobileState, Mobile
     private int mLastWlanLevel;
     private int mLastWlanCrossSimLevel;
     @VisibleForTesting
-    final MobileStatusTracker mMobileStatusTracker;
+    MobileStatusTracker mMobileStatusTracker;
 
     // Save the previous STATUS_HISTORY_SIZE states for logging.
     private final String[] mMobileStatusHistory = new String[STATUS_HISTORY_SIZE];
@@ -199,7 +199,6 @@ public class MobileSignalController extends SignalController<MobileState, Mobile
             SubscriptionDefaults defaults,
             Looper receiverLooper,
             CarrierConfigTracker carrierConfigTracker,
-            MobileStatusTrackerFactory mobileStatusTrackerFactory,
             FeatureFlags featureFlags
     ) {
         super("MobileSignalController(" + info.getSubscriptionId() + ")", context,
@@ -233,7 +232,8 @@ public class MobileSignalController extends SignalController<MobileState, Mobile
             }
         };
         mImsMmTelManager = ImsMmTelManager.createForSubscriptionId(info.getSubscriptionId());
-        mMobileStatusTracker = mobileStatusTrackerFactory.createTracker(mMobileCallback);
+        mMobileStatusTracker = new MobileStatusTracker(mPhone, receiverLooper,
+                info, mDefaults, mMobileCallback);
         mProviderModelBehavior = featureFlags.isEnabled(Flags.COMBINED_STATUS_BAR_SIGNAL_ICONS);
 
 	Handler mHandler = new Handler();
