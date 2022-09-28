@@ -98,6 +98,11 @@ public class QSCustomizer extends LinearLayout {
                 & Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES;
     }
 
+    private boolean isNightMode() {
+        return (mContext.getResources().getConfiguration().uiMode
+                & Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES;
+    }
+
     void updateResources() {
         updateTransparentViewHeight();
         mRecyclerView.getAdapter().notifyItemChanged(0);
