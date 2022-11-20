@@ -5162,6 +5162,12 @@ public final class Settings {
         public static final String ANIMATOR_DURATION_SCALE = Global.ANIMATOR_DURATION_SCALE;
 
         /**
+         * Whether or not to vibrate when a touchscreen gesture is detected
+         * @hide
+         */
+        public static final String TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK = "touchscreen_gesture_haptic_feedback";
+
+        /**
          * Control whether the accelerometer will be used to change screen
          * orientation.  If 0, it will not be used unless explicitly requested
          * by the application; if 1, it will be used by default unless explicitly
@@ -5642,6 +5648,21 @@ public final class Settings {
         public static final String CUSTOM_RINGTONE_VIBRATION_PATTERN = "custom_ringtone_vibration_pattern";
 
         /**
+         * Whether the HighTouchSensitivity is activated or not.
+         * 0 = off, 1 = on
+         * @hide
+         */
+        public static final String HIGH_TOUCH_SENSITIVITY_ENABLE = "high_touch_sensitivity_enable";
+
+        /**
+         * Whether the HighTouchPollingRate is activated or not.
+         * 0 = off, 1 = on
+         * @hide
+         */
+        public static final String HIGH_TOUCH_POLLING_RATE_ENABLE =
+                "high_touch_polling_rate_enable";
+
+        /**
          * IMPORTANT: If you add a new public settings you also have to add it to
          * PUBLIC_SETTINGS below. If the new setting is hidden you have to add
          * it to PRIVATE_SETTINGS below. Also add a validator that can validate
@@ -6113,6 +6134,8 @@ public final class Settings {
             PRIVATE_SETTINGS.add(STATUS_BAR_CLOCK_AUTO_HIDE_HDURATION);
             PRIVATE_SETTINGS.add(STATUS_BAR_CLOCK_AUTO_HIDE_SDURATION);
             PRIVATE_SETTINGS.add(LOCKSCREEN_BATTERY_INFO);
+            PRIVATE_SETTINGS.add(HIGH_TOUCH_SENSITIVITY_ENABLE);
+            PRIVATE_SETTINGS.add(HIGH_TOUCH_POLLING_RATE_ENABLE);
         }
 
         /**
@@ -11291,6 +11314,11 @@ public final class Settings {
         @Readable
         public static final String GAME_DASHBOARD_ALWAYS_ON = "game_dashboard_always_on";
 
+        /**
+         * Whether touch hovering is enabled on supported hardware
+         * @hide
+         */
+        public static final String FEATURE_TOUCH_HOVERING = "feature_touch_hovering";
 
         /**
          * For this device state, no specific auto-rotation lock setting should be applied.
