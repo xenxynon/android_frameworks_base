@@ -64,9 +64,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeoutException;
 
-import com.android.internal.util.evolution.AttestationHooks;
-import com.android.internal.util.evolution.PixelPropsUtils;
-
 /**
  * Base class for implementing application instrumentation code.  When running
  * with instrumentation turned on, this class will be instantiated for you
@@ -1220,43 +1217,37 @@ public class Instrumentation {
     /**
      * Perform instantiation of the process's {@link Application} object.  The
      * default implementation provides the normal system behavior.
-     * 
+     *
      * @param cl The ClassLoader with which to instantiate the object.
      * @param className The name of the class implementing the Application
      *                  object.
      * @param context The context to initialize the application with
-     * 
+     *
      * @return The newly instantiated Application object.
      */
     public Application newApplication(ClassLoader cl, String className, Context context)
-            throws InstantiationException, IllegalAccessException, 
+            throws InstantiationException, IllegalAccessException,
             ClassNotFoundException {
         Application app = getFactory(context.getPackageName())
                 .instantiateApplication(cl, className);
         app.attach(context);
-        AttestationHooks.initApplicationBeforeOnCreate(app);
-        String packageName = context.getPackageName();
-        PixelPropsUtils.setProps(packageName);
         return app;
     }
-    
+
     /**
      * Perform instantiation of the process's {@link Application} object.  The
      * default implementation provides the normal system behavior.
-     * 
+     *
      * @param clazz The class used to create an Application object from.
      * @param context The context to initialize the application with
-     * 
+     *
      * @return The newly instantiated Application object.
      */
     static public Application newApplication(Class<?> clazz, Context context)
-            throws InstantiationException, IllegalAccessException, 
+            throws InstantiationException, IllegalAccessException,
             ClassNotFoundException {
         Application app = (Application)clazz.newInstance();
         app.attach(context);
-        AttestationHooks.initApplicationBeforeOnCreate(app);
-        String packageName = context.getPackageName();
-        PixelPropsUtils.setProps(packageName);
         return app;
     }
 
