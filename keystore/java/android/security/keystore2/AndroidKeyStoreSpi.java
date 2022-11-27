@@ -40,10 +40,7 @@ import android.system.keystore2.KeyEntryResponse;
 import android.system.keystore2.KeyMetadata;
 import android.system.keystore2.ResponseCode;
 import android.util.Log;
-
 import com.android.internal.annotations.VisibleForTesting;
-import com.android.internal.util.evolution.AttestationHooks;
-
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
